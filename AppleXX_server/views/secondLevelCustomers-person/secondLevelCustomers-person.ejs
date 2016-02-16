@@ -1,0 +1,79 @@
+<div class="card">
+    <div class="card-header">
+        <h2>二级客户列表 <small>对应项目计划中的Kunden C</small></h2>
+        <ul class="actions">
+            <li>
+                <a href="secondLevelCustomers-person/add">
+                    <i class="zmdi zmdi-plus"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <table id="secondlevelcustomers-personTable" class="table table-striped table-vmiddle">
+        <thead>
+            <tr>
+                <th data-column-id="id">用户ID</th>
+                <th data-column-id="name">姓名</th>
+                <th data-column-id="contact">联系方式</th>
+                <th data-column-id="birthday">生日</th>
+                <th data-column-id="sex">性别</th>
+                <th data-column-id="type">类型</th>
+                <th data-column-id="national">国籍</th>
+                <th data-column-id="language">语言</th>
+                <th data-column-id="passport">护照号</th>
+                <th data-column-id="others">其它</th>
+                <th data-column-id="work">工作</th>
+                <th data-column-id="date" data-order="desc">加入时间</th>
+                <th data-column-id="commands" data-formatter="commands" data-sortable="false">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+        <% customers.forEach( function(customer, index) { %>
+            <tr>
+                <td><%= customer._id %></td>
+                <td><%= customer.name %></td>
+                <td><%= customer.contact %></td>
+                <td><%= customer.birthday %></td>
+                <td><%= customer.sex %></td>
+                <td><%= customer.type %></td>
+                <td><%= customer.national %></td>
+                <td><%= customer.language %></td>
+                <td><%= customer.passport %></td>
+                <td><%= customer.others %></td>
+                <td><%= customer.work %></td>
+                <td><%= customer.updated_at.toLocaleString() %></td>
+            </tr>
+        <% }) %>
+        </tbody>
+    </table>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        //Command Buttons
+        var grid = $("#secondlevelcustomers-personTable").bootgrid({
+            css: {
+                icon: 'zmdi icon',
+                iconColumns: 'zmdi-view-module',
+                iconDown: 'zmdi-expand-more',
+                iconRefresh: 'zmdi-refresh',
+                iconUp: 'zmdi-expand-less'
+            },
+            formatters: {
+                "commands": function(column, row) {
+                            return "<button type=\"button\" class=\"edit btn btn-icon command-edit waves-effect waves-cdata-row-id=\"" + row.id + "\" data-row-id='"+ row.id +"'><span class=\"zmdi zmdi-edit\"></span></button> " + 
+                                "<button type=\"button\" class=\"delete btn btn-icon command-delete waves-effect waves-cdata-row-id=\"" + row.id + "\" data-row-id='"+ row.id +"'><span class=\"zmdi zmdi-delete\"></span></button>";
+                }
+            }
+        }).on("loaded.rs.jquery.bootgrid", function() {
+            /* Executes after data is loaded and rendered */
+            grid.find(".edit").on("click", function(e)
+            {
+                window.location.href = 'secondLevelCustomers-person/edit?id=' + $(this).data("row-id");
+            }).end().find(".delete").on("click", function(e)
+            {
+                window.location.href = 'secondLevelCustomers-person/remove?id=' + $(this).data("row-id");
+            });
+        });
+    });
+</script>

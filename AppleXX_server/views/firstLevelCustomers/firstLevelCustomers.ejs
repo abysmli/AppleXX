@@ -1,0 +1,97 @@
+<div class="card">
+    <div class="card-header">
+        <h2>一级客户列表 <small>对应项目计划中的Kunden A</small></h2>
+        <ul class="actions">
+            <li>
+                <a href="firstLevelCustomers/add">
+                    <i class="zmdi zmdi-plus"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <table id="firstlevelcustomersTable" class="table table-striped table-vmiddle">
+        <thead>
+            <tr>
+                <th data-column-id="id">用户ID</th>
+                <th data-column-id="name">姓名</th>
+                <th data-column-id="sex">性别</th>
+                <th data-column-id="email">邮箱</th>
+                <th data-column-id="phone">手机号</th>
+                <th data-column-id="address">地址</th>
+                <th data-column-id="national">国籍</th>
+                <th data-column-id="passport">护照号</th>
+                <th data-column-id="barcode">条形码</th>
+                <th data-column-id="resttime">剩余时间</th>
+                <th data-column-id="date" data-order="desc">加入时间</th>
+                <th data-column-id="content" data-formatter="content" data-sortable="false" data-width="150px">内容</th>
+                <th data-column-id="commands" data-formatter="commands" data-sortable="false" data-width="100px">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+        <% customers.forEach( function(customer, index) { %>
+            <tr>
+                <td><%= customer._id %></td>
+                <td><%= customer.name %></td>
+                <td><%= customer.sex %></td>
+                <td><%= customer.email %></td>
+                <td><%= customer.phone %></td>
+                <td><%= customer.address %></td>
+                <td><%= customer.national %></td>
+                <td><%= customer.passport %></td>
+                <td><%= customer.barcode %></td>
+                <td><%= customer.barcode_start != undefined ? (7 - Math.ceil(Math.abs((new Date()).getTime() - customer.barcode_start.getTime()) / (1000 * 3600 * 24)) > 0 ? 7 - Math.ceil(Math.abs((new Date()).getTime() - customer.barcode_start.getTime()) / (1000 * 3600 * 24)) : '失效' ) : '失效' %></td>
+                <td><%= customer.updated_at.toLocaleString() %></td>
+            </tr>
+        <% }) %>
+        </tbody>
+    </table>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        //Command Buttons
+        var grid = $("#firstlevelcustomersTable").bootgrid({
+            css: {
+                icon: 'zmdi icon',
+                iconColumns: 'zmdi-view-module',
+                iconDown: 'zmdi-expand-more',
+                iconRefresh: 'zmdi-refresh',
+                iconUp: 'zmdi-expand-less'
+            },
+            formatters: {
+                "content": function(column, row) {
+                            return "<button type=\"button\" class=\"barcode btn btn-icon command-edit waves-effect waves-cdata-row-id=\"" + row.id + "\" data-row-id='"+ row.id +"'><span class=\"zmdi zmdi-border-all\"></span></button> " + 
+                                "<button type=\"button\" class=\"download btn btn-icon command-edit waves-effect waves-cdata-row-id=\"" + row.id + "\" data-row-id='"+ row.id +"'><span class=\"zmdi zmdi-download\"></span></button> " + 
+                                "<button type=\"button\" class=\"add btn btn-icon command-edit waves-effect waves-cdata-row-id=\"" + row.id + "\" data-row-id='"+ row.id +"'><span class=\"zmdi zmdi-plus\"></span></button> ";
+                },
+                "commands": function(column, row) {
+                            return "<button type=\"button\" class=\"edit btn btn-icon command-edit waves-effect waves-cdata-row-id=\"" + row.id + "\" data-row-id='"+ row.id +"'><span class=\"zmdi zmdi-edit\"></span></button> " + 
+                                "<button type=\"button\" class=\"delete btn btn-icon command-delete waves-effect waves-cdata-row-id=\"" + row.id + "\" data-row-id='"+ row.id +"'><span class=\"zmdi zmdi-delete\"></span></button>";
+                }
+            }
+        }).on("loaded.rs.jquery.bootgrid", function() {
+            /* Executes after data is loaded and rendered */
+            grid.find(".download").on("click", function(e)
+            {
+                window.open(
+                    '/img/uploads/' + $(this).data("row-id") + '-qrcode.png',
+                    '_blank'
+                );
+            }).end().find(".barcode").on("click", function(e)
+            {
+                $.get('firstLevelCustomers/barcode?id=' + $(this).data("row-id"), function(customer) {
+                    swal("成功生成条形码", "条形码编号：" + customer.barcode + " 已经成功生成\n剩余有效期为6天", "success")
+                });
+            }).end().find(".add").on("click", function(e)
+            {
+                window.location.href = 'thirdLevelCustomers/add?parentId=' + $(this).data("row-id");
+            }).end().find(".edit").on("click", function(e)
+            {
+                window.location.href = 'firstLevelCustomers/edit?id=' + $(this).data("row-id");
+            }).end().find(".delete").on("click", function(e)
+            {
+                window.location.href = 'firstLevelCustomers/remove?id=' + $(this).data("row-id");
+            });
+        });
+    });
+</script>

@@ -1,0 +1,88 @@
+<div class="card">
+    <div class="card-header">
+        <h2><%= title %> <small>对应项目计划中的Kunden A
+        </small></h2>
+    </div>
+    
+    <div class="card-body card-padding">
+        <% if(customer.passport_photo != undefined) { %>
+        <p class="f-500 c-black m-b-20">已存的护照照片</p>
+        <div class="lightbox row">
+            <div data-src="/img/uploads/<%= customer.passport_photo %>" class="col-sm-6 col-xs-12">
+                <div class="lightbox-item">
+                    <img src="/img/uploads/<%= customer.passport_photo %>" alt="" />
+                </div>
+            </div>
+        </div>
+        <hr/>
+        <% } %>
+        <form role="form" method="post" enctype='multipart/form-data'>
+            <div class="form-group fg-line">
+                <label for="email">邮箱</label>
+                <input type="email" name="email" class="form-control input-sm" id="email" value="<%= customer.email || "" %>" placeholder="请输入邮箱">
+            </div>
+            <div class="form-group fg-line">
+                <label for="password">密码</label>
+                <input type="text" name="password" class="form-control input-sm" id="password" value="<%= customer.password || "" %>" placeholder="请输入密码">
+            </div>
+            <div class="form-group fg-line">
+                <label for="name">姓名</label>
+                <input type="text" name="name" class="form-control input-sm" id="name" value="<%= customer.name || "" %>" placeholder="请输入姓名">
+            </div>
+            <div class="form-group fg-line">
+                <label for="sex">性别</label>
+                <br/>
+                <label class="radio radio-inline m-r-20">
+                    <input type="radio" name="sex" value="男" <% if(customer.sex=='男') { %> checked <% } %>>
+                    <i class="input-helper"></i>
+                    男
+                </label>
+                
+                <label class="radio radio-inline m-r-20">
+                    <input type="radio" name="sex" value="女" <% if(customer.sex=='女') { %> checked <% } %>>
+                    <i class="input-helper"></i>
+                    女
+                </label>
+            </div>
+            <div class="form-group fg-line">
+                <label for="phone">手机号</label>
+                <input type="text" name="phone" class="form-control input-sm" id="phone" value="<%= customer.phone || "" %>" placeholder="请输入手机号">
+            </div>
+            <div class="form-group fg-line">
+                <label for="city">城市</label>
+                <input type="text" name="city" class="form-control input-sm" id="city" value="<%= customer.city || "" %>" placeholder="请输入城市">
+            </div>
+            <div class="form-group fg-line">
+                <label for="zip">邮编</label>
+                <input type="text" name="zip" class="form-control input-sm" id="zip" value="<%= customer.zip || "" %>" placeholder="请输入邮编">
+            </div>
+            <div class="form-group fg-line">
+                <label for="address">地址</label>
+                <input type="text" name="address" class="form-control input-sm" id="address" value="<%= customer.address || "" %>" placeholder="请输入地址">
+            </div>
+            <div class="form-group fg-line">
+                <label for="national">国籍</label>
+                <input type="text" name="national" class="form-control input-sm" id="national" value="<%= customer.national || "" %>" placeholder="请输入国籍">
+            </div>
+            <div class="form-group fg-line">
+                <label for="passport">护照号码</label>
+                <input type="text" name="passport" class="form-control input-sm" id="passport" value="<%= customer.passport || "" %>" placeholder="请输入护照号码">
+            </div>
+            <div class="form-group fg-line">
+                <p class="f-500 c-black m-b-20">护照照片</p>
+                <div class="fileinput fileinput-new" data-provides="fileinput">
+                    <div class="fileinput-preview thumbnail" data-trigger="fileinput"></div>
+                    <div>
+                        <span class="btn btn-info btn-file">
+                            <span class="fileinput-new">选择照片</span>
+                            <span class="fileinput-exists">更换照片</span>
+                            <input type="file" name="passport_photo">
+                        </span>
+                        <a href="#" class="btn btn-danger fileinput-exists" data-dismiss="fileinput">清除</a>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-sm m-t-10">提交</button>
+        </form>
+    </div>
+</div>

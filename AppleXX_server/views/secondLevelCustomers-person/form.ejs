@@ -1,0 +1,76 @@
+<div class="card">
+    <div class="card-header">
+        <h2><%= title %> <small>对应项目计划中的Kunden C
+        </small></h2>
+    </div>
+    
+    <div class="card-body card-padding">
+        <form role="form" method="post">
+            <div class="form-group fg-line">
+                <label for="name">姓名</label>
+                <input type="text" name="name" class="form-control input-sm" id="name" value="<%= customer.name || "" %>" placeholder="请输入姓名">
+            </div>
+            <div class="form-group fg-line">
+                <label for="sex">性别</label>
+                <br/>
+                <label class="radio radio-inline m-r-20">
+                    <input type="radio" name="sex" value="男" <% if(customer.sex=='男') { %> checked <% } %>>
+                    <i class="input-helper"></i>
+                    男
+                </label>
+                
+                <label class="radio radio-inline m-r-20">
+                    <input type="radio" name="sex" value="女" <% if(customer.sex=='女') { %> checked <% } %>>
+                    <i class="input-helper"></i>
+                    女
+                </label>
+            </div>
+            <div class="form-group fg-line">
+                <label for="birthday">生日</label>
+                <div class="dtp-container fg-line">
+                    <input type='text' name="birthday" class="form-control date-picker" id="birthday" value="<%= customer.birthday || "" %>" placeholder="请输入生日">
+                </div>
+            </div>
+            <div class="form-group fg-line">
+                <label for="type">类型</label>
+                <input type="text" name="type" class="form-control input-sm" id="type" value="<%= customer.type || "" %>" placeholder="请输入类型">
+            </div>
+            <div class="form-group fg-line">
+                <label for="contact">联系方式</label>
+                <input type="text" name="contact" class="form-control input-sm" id="contact" value="<%= customer.contact || "" %>" placeholder="请输入联系方式">
+            </div>
+            <div class="form-group fg-line">
+                <label for="language">语言</label>
+                <input type="text" name="language" class="form-control input-sm" id="language" value="<%= customer.language || "" %>" placeholder="请输入语言">
+            </div>
+            <div class="form-group fg-line">
+                <label for="national">国籍</label>
+                <input type="text" name="national" class="form-control input-sm" id="national" value="<%= customer.national || "" %>" placeholder="请输入国籍">
+            </div>
+            <div class="form-group fg-line">
+                <label for="passport">护照号码</label>
+                <input type="text" name="passport" class="form-control input-sm" id="passport" value="<%= customer.passport || "" %>" placeholder="请输入护照号码">
+            </div>
+            <div class="form-group fg-line">
+                <label for="others">其它</label>
+                <input type="text" name="others" class="form-control input-sm" id="others" value="<%= customer.others || "" %>" placeholder="请输入其它">
+            </div>
+            <div class="form-group fg-line">
+                <label for="work">职业</label>
+                <br/>
+                <label class="radio radio-inline m-r-20">
+                    <input type="radio" name="work" value="翻译" <% if(customer.work=='翻译') { %> checked <% } %>>
+                    <i class="input-helper"></i>
+                    翻译
+                </label>
+                
+                <label class="radio radio-inline m-r-20">
+                    <input type="radio" name="work" value="小姐" <% if(customer.work=='小姐') { %> checked <% } %>>
+                    <i class="input-helper"></i>
+                    小姐
+                </label>
+            </div>
+            <button type="submit" class="btn btn-primary btn-sm m-t-10">提交</button>
+        </form>
+    </div>
+</div>

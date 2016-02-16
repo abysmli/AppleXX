@@ -1,0 +1,52 @@
+<div class="card">
+    <div class="card-header">
+        <h2><%= title %> <small>对应项目计划中的Geschäft
+        </small></h2>
+    </div>
+    
+    <div class="card-body card-padding">
+        <form role="form" method="post">
+            <div class="form-group fg-line">
+                <label for="name">店名</label>
+                <input type="text" name="name" class="form-control input-sm" id="name" value="<%= customer.name || "" %>" placeholder="请输入姓名">
+            </div>
+            <div class="form-group fg-line">
+                <label for="address">地址</label>
+                <input type="text" name="address" class="form-control input-sm" id="address" value="<%= customer.address || "" %>" placeholder="请输入地址">
+            </div>
+            <div class="form-group fg-line">
+                <label for="brand">品牌</label>
+                <input type="text" name="brand" class="form-control input-sm" id="brand" value="<%= customer.brand || "" %>" placeholder="请输入品牌">
+            </div>
+            <div class="form-group fg-line">
+                <label for="email">邮箱</label>
+                <input type="email" name="email" class="form-control input-sm" id="email" value="<%= customer.email || "" %>" placeholder="请输入邮箱">
+            </div>
+            <div class="form-group fg-line">
+                <label for="tax">税号</label>
+                <input type="text" name="tax" class="form-control input-sm" id="tax" value="<%= customer.tax || "" %>" placeholder="请输入税号">
+            </div>
+            <div class="form-group fg-line">
+                <label for="contact">联系方式</label>
+                <input type="text" name="contact" class="form-control input-sm" id="contact" value="<%= customer.contact || "" %>" placeholder="请输入联系方式">
+            </div>
+            <div class="form-group fg-line">
+                <label for="desc">店铺介绍</label>
+                <input type="desc" name="desc" class="form-control input-sm" id="desc" value="<%= customer.desc || "" %>" placeholder="请输入店铺介绍">
+            </div>
+            <div class="form-group fg-line">
+                <label for="message">即时信息</label>
+                <input type="text" name="message" class="form-control input-sm" id="message" value="<%= customer.message || "" %>" placeholder="请输入即时信息">
+            </div>
+            <div class="form-group fg-line">
+                <label for="type">类型</label>
+                <input type="text" name="type" class="form-control input-sm" id="type" value="<%= customer.type || "" %>" placeholder="请输入类型">
+            </div>
+            <div class="form-group fg-line">
+                <label for="others">其它</label>
+                <input type="text" name="others" class="form-control input-sm" id="others" value="<%= customer.others || "" %>" placeholder="请输入其它">
+            </div>
+            <button type="submit" class="btn btn-primary btn-sm m-t-10">提交</button>
+        </form>
+    </div>
+</div>
