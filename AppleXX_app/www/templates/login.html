@@ -3,17 +3,16 @@
         <form class="list">
             <ion-list>
                 <label class="item item-input">
-                    <span class="input-label">用户名</span>
-                    <input type="text" placeholder="">
+                    <span class="input-label">邮箱</span>
+                    <input type="text" id="login_email" name="email" placeholder="">
                 </label>
                 <label class="item item-input">
                     <span class="input-label">密码</span>
-                    <input type="password" placeholder="">
+                    <input type="password" id="login_password" name="password" placeholder="">
                 </label>
             </ion-list>
             <div class="spacer" style="height: 40px;"></div>
-            <a href="#/menu/tabs/index" class="button button-stable button-block ">登录</a>
-            <a href="#" onclick="window.open('#signup', '_system', 'location=yes'); return false;" class="button button-positive button-clear button-block ">注册一个新的帐号</a>
+            <a href="" ng-click="login()" class="button button-stable button-block ">登录</a>
         </form>
     </ion-content>
 </ion-view>

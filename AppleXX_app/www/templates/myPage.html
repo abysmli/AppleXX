@@ -1,7 +1,19 @@
 <ion-view title="个人信息">
 	<ion-content overflow-scroll="true" padding="true" class="has-header">
 		<div class="list card">
+			<div class="item item-avatar">
+			    <h2>名字：{{ myinfo.name }}</h2>
+			    <p>电子邮件：{{ myinfo.email }}</p>
+			    <p>护照：{{ myinfo.passport }}</p>
+			    <p>电话：{{ myinfo.phone }}</p>
+			    <p>地址：{{ myinfo.address }}</p>
+			</div>
 			<div class="item item-image">
+				<p>我的二维码</p>
+				<img ng-src="http://0.0.0.0:3000/img/uploads/{{ myinfo._id }}-qrcode.png">
+			</div>
+			<div class="item item-image">
+				<p>我的条形码</p>
 				<img id="barcode">
 			</div>
 		</div>

@@ -6,9 +6,19 @@ var SecondLevelCustomer_person = require('../models/secondLevelCustomer-person.j
 var SecondLevelCustomer_shop = require('../models/secondLevelCustomer-shop.js');
 var ThirdLevelCustomer = require('../models/thirdLevelCustomer.js');
 
-/* GET home page. */
+router.get('/login', function(req, res, next) {
+	FirstLevelCustomer.findOne({
+		email: req.query.email,
+		password: req.query.password
+	}, function(err, customer) {
+		if (err) res.send('error');
+		res.json(customer);
+	});
+});
+
+
+
 router.get('/getFirstLevelCustomer', function(req, res, next) {
-	console.log(req.query);
 	FirstLevelCustomer.findById(req.query.id, function(err, customer) {
 		if (err) res.send('error');
 		res.json(customer);
